@@ -5,7 +5,7 @@
 
 Course lessons, own researches and resolved practice activities about [SoloLearn Go Course](https://www.sololearn.com/Course/go/?ref=github)
 
-See my profile at [![Sololearn](https://img.shields.io/badge/-Sololearn-139ef1?style=for-the-badge&logo=sololearn&logoWidth=20&logoColor=ffc881&labelColor=139ef1)](https://www.sololearn.com/profile/20275480)
+Follow me at [![Sololearn](https://img.shields.io/badge/-Sololearn-139ef1?style=for-the-badge&logo=sololearn&logoWidth=20&logoColor=ffc881&labelColor=139ef1)](https://www.sololearn.com/profile/20275480). I've help a big amount developers 🚀.
 
 ## Welcome to our Go course!
 
