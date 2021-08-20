@@ -37,7 +37,18 @@ func main() {
         os.Exit(1)
     }
     
-    apples := fruits / 2
-    pies   := apples / 3
-    fmt.Println("Apple Pies:", pies)
+    fmt.Println("Apple Pies:", 
+        makeApplePies(fruits))
+}
+
+
+const (
+    APPLES_PER_BOWL uint = 2
+    APPLES_PER_PIE  uint = 3
+)
+
+func makeApplePies(fruitAmount uint) (pies uint) {
+    apples := fruitAmount / APPLES_PER_BOWL
+    pies   = apples / APPLES_PER_PIE
+    return
 }
