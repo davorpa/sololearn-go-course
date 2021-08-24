@@ -1,4 +1,4 @@
-name: Golang CI/CD
+name: Golang CI
 
 on:
   push:
@@ -12,12 +12,12 @@ jobs:
     name: Cancel previous runs
     runs-on: ubuntu-18.04
     steps:
-      - uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
+    - uses: styfle/cancel-workflow-action@0.9.1
+      with:
+        access_token: ${{ github.token }}
 
-  test:
-    name: Run with ${{ matrix.go-version }} on ${{ matrix.os }}
+  lint:
+    name: Lint with Go ${{ matrix.go-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     env:
@@ -65,11 +65,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
-    - name: List code format diffs
-      run: gofmt -s -d -e .
-#      run: run: find . -name '*.go' | while read -r file; do gofmt -s -d -e "$$file"; done
+    - name: Check code format diffs
+      run: |
+        FILEFMTS=$( gofmt -s -l . ); FILEFMTS_COUNT=$( echo $FILEFMTS | wd -l );
+        if [ "$FILEFMTS_COUNT" -gt 0 ]; then echo -en "::warning::There are $FILEFMTS_COUNT files to be reformatted:\n\n$FILEFMTS\n\n"; gofmt -s -d -e . ; fi
 
-#    - name: Fix code format diffs
+#    - name: Fix code format
 #      run: find . -name '*.go' | while read -r file; do gofmt -s -w "$$file"; goimports -w "$$file"; done
 #      if: startsWith(matrix.os, 'ubuntu-')
 
@@ -77,5 +78,8 @@ jobs:
 #      run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
 #      if: startsWith(matrix.os, 'ubuntu-')
 
-    - name: Test
-      run: go test -race ./...
+#    - name: Build
+#      run: go build -v ./...
+
+#    - name: Test
+#      run: go test -race ./...
