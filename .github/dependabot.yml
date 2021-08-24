@@ -1,5 +1,5 @@
 # Github Dependabot. Config file
-# https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
 updates:
@@ -14,7 +14,7 @@ updates:
       day: "sunday"
       time: "09:00"
       timezone: "Europe/Madrid"
-    # Specify labels for npm pull requests
+    # Specify labels for `gha` pull requests
     labels:
       - "github-actions"
       - "dependencies"
@@ -24,7 +24,7 @@ updates:
       prefix: "gha"
       include: "scope"
     # Allow up to N open pull requests (0 to disable)
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 5
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       # for example, `dependabot/github_actions/actions/checkout-2.3.1`
@@ -39,7 +39,7 @@ updates:
       day: "sunday"
       time: "09:00"
       timezone: "Europe/Madrid"
-    # Specify labels for npm pull requests
+    # Specify labels for `gomod` pull requests
     labels:
       - "go-modules"
       - "dependencies"
@@ -49,7 +49,7 @@ updates:
       prefix: "gomod"
       include: "scope"
     # Allow up to N open pull requests (0 to disable)
-    open-pull-requests-limit: 2
+    open-pull-requests-limit: 5
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       # for example, `dependabot/gomod/onsi/ginkgo-2.0.1`
