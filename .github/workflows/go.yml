@@ -29,13 +29,13 @@ jobs:
 #          - ubuntu-18.04
 #          - ubuntu-20.04
           - ubuntu-latest
-          - windows-latest
+#          - windows-latest
 #          - macos-latest
         go-version:
           # Latest n versions
 #          - 1.15.x
           - 1.16.x
-          - 1.17.x
+#          - 1.17.x
 
     steps:
 
@@ -65,11 +65,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
-    - name: Ensure code format
-      run: |
-        if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
-      # above cmd only works on ubuntu: `wc`
-      if: startsWith(matrix.os, 'ubuntu-')
+    - name: List code format diffs
+      run: gofmt -s -d -e .
+#      run: run: find . -name '*.go' | while read -r file; do gofmt -s -d -e "$$file"; done
+
+#    - name: Fix code format diffs
+#      run: find . -name '*.go' | while read -r file; do gofmt -s -w "$$file"; goimports -w "$$file"; done
+#      if: startsWith(matrix.os, 'ubuntu-')
+
+#    - name: Ensure code format
+#      run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+#      if: startsWith(matrix.os, 'ubuntu-')
 
     - name: Test
       run: go test -race ./...
