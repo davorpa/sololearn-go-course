@@ -67,7 +67,7 @@ jobs:
 
     - name: Check code format diffs
       run: |
-        FILEFMTS=$( gofmt -s -l . ); FILEFMTS_COUNT=$( echo $FILEFMTS | wd -l );
+        FILEFMTS=$( gofmt -s -l . ); FILEFMTS_COUNT=$( echo $FILEFMTS | wc -l );
         if [ "$FILEFMTS_COUNT" -gt 0 ]; then echo -en "::warning::There are $FILEFMTS_COUNT files to be reformatted:\n\n$FILEFMTS\n\n"; gofmt -s -d -e . ; fi
 
 #    - name: Fix code format
