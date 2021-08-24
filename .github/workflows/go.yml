@@ -65,20 +65,29 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
-    - name: Check code format diffs
+    - name: Check code formats (gofmt)
       run: |
-        FILEFMTS=$(gofmt -s -l .)
-        FILEFMTS_COUNT=$(gofmt -s -l . | wc -l)
-        if [ "$FILEFMTS_COUNT" -gt 0 ]; then
-          echo -en "::warning::There are $FILEFMTS_COUNT files to be reformatted:\n\n$FILEFMTS\n\n"
-          gofmt -s -d -e .
+        FILES=$(gofmt -l -s .)
+        FILES_COUNT=$(gofmt -l -s . | wc -l)
+        if [ "$FILES_COUNT" -gt 0 ]; then
+          echo -en "::warning::There are $FILES_COUNT files to be reformatted:\n\n$FILES\n\n"
+          gofmt -d -s -e .
         fi
 
-#    - name: Fix code format
+    - name: Check code formats (goimports)
+      run: |
+        FILES=$(goimports -l .)
+        FILES_COUNT=$(goimports -l . | wc -l)
+        if [ "$FILES_COUNT" -gt 0 ]; then
+          echo -en "::warning::There are $FILES_COUNT files with import changes:\n\n$FILES\n\n"
+          goimports -d .
+        fi
+
+#    - name: Fix code formats
 #      run: find . -name '*.go' | while read -r file; do gofmt -s -w "$$file"; goimports -w "$$file"; done
 #      if: startsWith(matrix.os, 'ubuntu-')
 
-#    - name: Ensure code format
+#    - name: Ensure code formats
 #      run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
 #      if: startsWith(matrix.os, 'ubuntu-')
 
