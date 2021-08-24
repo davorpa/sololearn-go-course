@@ -67,8 +67,12 @@ jobs:
 
     - name: Check code format diffs
       run: |
-        FILEFMTS=$( gofmt -s -l . ); FILEFMTS_COUNT=$( echo $FILEFMTS | wc -l );
-        if [ "$FILEFMTS_COUNT" -gt 0 ]; then echo -en "::warning::There are $FILEFMTS_COUNT files to be reformatted:\n\n$FILEFMTS\n\n"; gofmt -s -d -e . ; fi
+        FILEFMTS=$(gofmt -s -l .)
+        FILEFMTS_COUNT=$(gofmt -s -l . | wc -l)
+        if [ "$FILEFMTS_COUNT" -gt 0 ]; then
+          echo -en "::warning::There are $FILEFMTS_COUNT files to be reformatted:\n\n$FILEFMTS\n\n"
+          gofmt -s -d -e .
+        fi
 
 #    - name: Fix code format
 #      run: find . -name '*.go' | while read -r file; do gofmt -s -w "$$file"; goimports -w "$$file"; done
