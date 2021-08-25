@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    types: [opened, synchronize]
 
 jobs:
 
@@ -22,6 +23,7 @@ jobs:
 
     env:
       working-directory: ./src
+      artifact-path: ${{ github.workspace }}/src
 
     strategy:
       matrix:
@@ -78,6 +80,14 @@ jobs:
           gofmt -d -s -e .
         fi
 
+    - name: Save gofmt artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: gofmt-outputs-${{ matrix.go-version }}-${{ matrix.os }}
+        path: ${{ env.artifact-path }}
+        if-no-files-found: warn
+        retention-days: 5
+
     - name: Check code formats (goimports)
       run: |
         FILES=$(goimports -l .)
@@ -86,6 +96,14 @@ jobs:
           echo -en "::warning::There are $FILES_COUNT files with import changes:\n\n$FILES\n\n"
           goimports -d .
         fi
+
+    - name: Save goimports artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: goimports-outputs-${{ matrix.go-version }}-${{ matrix.os }}
+        path: ${{ env.artifact-path }}
+        if-no-files-found: warn
+        retention-days: 5
 
 #    - name: Fix code formats
 #      run: find . -name '*.go' | while read -r file; do gofmt -s -w "$$file"; goimports -w "$$file"; done
