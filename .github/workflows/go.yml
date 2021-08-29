@@ -87,7 +87,7 @@ jobs:
           gofmt -d -s -e . > ${{ env.working-directory }}/gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
         fi
         echo -e "::set-output name=files::$FILES" > /dev/null
-        echo -e "::set-output name=count::$FILES_COUNT"
+        echo "::set-output name=count::$FILES_COUNT"
 
     - name: Save gofmt artifact
 #      if: ${{ toJSON(job.steps.check-gofmt.outputs.count) > 0 }}
@@ -99,15 +99,19 @@ jobs:
         retention-days: 5
 
     - name: Check code formats (goimports)
+      id: check-goimports
       run: |
         FILES=$(goimports -l .)
         FILES_COUNT=$(goimports -l . | wc -l)
         if [ "$FILES_COUNT" -gt 0 ]; then
           echo -en "::warning::There are $FILES_COUNT files with import changes:\n\n$FILES\n\n"
-          goimports -d .
+          goimports -d . > ${{ env.working-directory }}/goimports-${{ matrix.go-version }}-${{ matrix.os }}.diff
         fi
+        echo -e "::set-output name=files::$FILES" > /dev/null
+        echo "::set-output name=count::$FILES_COUNT"
 
     - name: Save goimports artifact
+#      if: ${{ toJSON(job.steps.check-goimports.outputs.count) > 0 }}
       uses: actions/upload-artifact@v2
       with:
         name: goimports-outputs-${{ matrix.go-version }}-${{ matrix.os }}
