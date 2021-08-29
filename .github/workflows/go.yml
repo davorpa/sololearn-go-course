@@ -84,7 +84,7 @@ jobs:
         FILES_COUNT=$(gofmt -l -s . | wc -l)
         if [ "$FILES_COUNT" -gt 0 ]; then
           echo -e "::warning::There are $FILES_COUNT files to be reformatted:\n\n$FILES\n\n"
-          gofmt -d -s -e . > gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
+          gofmt -d -s -e . > ${{ env.working-directory }}/gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
         fi
         echo -e "::set-output name=files::$FILES" > /dev/null
         echo -e "::set-output name=count::$FILES_COUNT"
