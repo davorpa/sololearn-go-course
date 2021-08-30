@@ -1,11 +1,15 @@
 # SoloLearn GO Course
 
-<center>
+<!-- markdownlint-disable -->
+<p align="center">
+<img src="https://user-images.githubusercontent.com/3125580/126856045-6e8bfa9d-e47d-428b-b460-2f317bf7c1bc.png" alt="Go">
 
+<!--
 ![Go](https://user-images.githubusercontent.com/3125580/126856045-6e8bfa9d-e47d-428b-b460-2f317bf7c1bc.png)
-<!-- ![Go](https://user-images.githubusercontent.com/3125580/126855805-f78cb513-3f1c-4800-a210-01badb7e1bdc.png) -->
+![Go](https://user-images.githubusercontent.com/3125580/126855805-f78cb513-3f1c-4800-a210-01badb7e1bdc.png) -->
 
-</center>
+</p>
+<!-- markdownlint-enable -->
 
 Course lessons, own researches and resolved practice activities about [SoloLearn Go Course](https://www.sololearn.com/Course/go/?ref=github)
 
