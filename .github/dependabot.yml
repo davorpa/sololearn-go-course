@@ -24,7 +24,7 @@ updates:
       prefix: "gha"
       include: "scope"
     # Allow up to N open pull requests (0 to disable)
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       # for example, `dependabot/github_actions/actions/checkout-2.3.1`
@@ -49,7 +49,7 @@ updates:
       prefix: "gomod"
       include: "scope"
     # Allow up to N open pull requests (0 to disable)
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       # for example, `dependabot/gomod/onsi/ginkgo-2.0.1`
