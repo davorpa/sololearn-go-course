@@ -98,7 +98,7 @@ jobs:
           ${{ env.artifact-path }}
           !**/goimports-*.diff
           !**/gofmt-*.diff
-          **/gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
+          ${{ env.working-directory }}/gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
         if-no-files-found: warn
         retention-days: 5
 
@@ -123,7 +123,7 @@ jobs:
           ${{ env.artifact-path }}
           !**/gofmt-*.diff
           !**/goimports-*.diff
-          **/goimports-${{ matrix.go-version }}-${{ matrix.os }}.diff
+          ${{ env.working-directory }}/goimports-${{ matrix.go-version }}-${{ matrix.os }}.diff
        if-no-files-found: warn
         retention-days: 5
 
