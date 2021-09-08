@@ -94,7 +94,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: gofmt-outputs-${{ matrix.go-version }}-${{ matrix.os }}
-        path: ${{ env.artifact-path }}
+        path: |
+          ${{ env.artifact-path }}
+          !**/goimports-*.diff
         if-no-files-found: warn
         retention-days: 5
 
@@ -115,7 +117,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: goimports-outputs-${{ matrix.go-version }}-${{ matrix.os }}
-        path: ${{ env.artifact-path }}
+        path: |
+          ${{ env.artifact-path }}
+          !**/gofmt-*.diff
         if-no-files-found: warn
         retention-days: 5
 
