@@ -97,6 +97,8 @@ jobs:
         path: |
           ${{ env.artifact-path }}
           !**/goimports-*.diff
+          !**/gofmt-*.diff
+          **/gofmt-${{ matrix.go-version }}-${{ matrix.os }}.diff
         if-no-files-found: warn
         retention-days: 5
 
@@ -120,7 +122,9 @@ jobs:
         path: |
           ${{ env.artifact-path }}
           !**/gofmt-*.diff
-        if-no-files-found: warn
+          !**/goimports-*.diff
+          **/goimports-${{ matrix.go-version }}-${{ matrix.os }}.diff
+       if-no-files-found: warn
         retention-days: 5
 
 #    - name: Fix code formats
