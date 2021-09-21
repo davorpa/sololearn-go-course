@@ -67,12 +67,12 @@ func IsBlank(s string) bool {
     return len(s) == 0
 }
 
-func Rprintln(times uint, text string) {
-    RFprintln(times, os.Stdout, text)
+func Rprintln(times uint, v ...interface{}) {
+    RFprintln(times, os.Stdout, v...)
 }
 
-func RFprintln(times uint, writer io.Writer, text string) {
+func RFprintln(times uint, writer io.Writer, v ...interface{}) {
     for i := uint(0); i < times; i++ {
-        fmt.Fprintln(writer, text)
+        fmt.Fprintln(writer, v...)
     }
 }
