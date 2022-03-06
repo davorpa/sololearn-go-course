@@ -58,7 +58,7 @@ jobs:
         go get -v -u golang.org/x/tools/cmd/goimports
 
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Restore cache
       uses: actions/cache@v2
