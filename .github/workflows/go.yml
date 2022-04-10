@@ -91,7 +91,7 @@ jobs:
 
     - name: Save gofmt artifact
 #      if: ${{ toJSON(job.steps.check-gofmt.outputs.count) > 0 }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: gofmt-outputs-${{ matrix.go-version }}-${{ matrix.os }}
         path: |
@@ -114,7 +114,7 @@ jobs:
 
     - name: Save goimports artifact
 #      if: ${{ toJSON(job.steps.check-goimports.outputs.count) > 0 }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: goimports-outputs-${{ matrix.go-version }}-${{ matrix.os }}
         path: |
