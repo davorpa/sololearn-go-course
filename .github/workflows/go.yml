@@ -48,7 +48,7 @@ jobs:
     steps:
 
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         stable: 'true'
         go-version: ${{ matrix.go-version }}
