@@ -41,17 +41,20 @@ jobs:
 #          - macos-latest
         go-version:
           # Latest n versions
-#          - 1.15.x
-          - 1.16.x
-#          - 1.17.x
+#          - 1.15
+          - 1.16
+#          - 1.17
 
     steps:
 
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
-        stable: 'true'
         go-version: ${{ matrix.go-version }}
+        check-latest: true
+
+    - name: Verify Go
+      run: go version
 
     - name: Install dependencies
       run: |
